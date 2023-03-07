@@ -1,7 +1,5 @@
 import { createCookieSessionStorage, redirect } from '@remix-run/node';
 
-import type { User } from '~/models/user.server';
-import { getUserByUsername } from '~/models/user.server';
 import secrets from '~/lib/secrets.server';
 
 if (!secrets.SESSION_SECRET?.length) {
@@ -26,25 +24,25 @@ export async function getSession(request: Request) {
   return sessionStorage.getSession(cookie);
 }
 
-export async function getUsername(request: Request): Promise<User['username'] | undefined> {
+export async function getUsername(request: Request): Promise<string | undefined> {
   const session = await getSession(request);
   const username = session.get(USER_SESSION_KEY);
   return username;
 }
 
-export async function getUser(request: Request) {
-  const username = await getUsername(request);
-  if (username === undefined) {
-    return null;
-  }
+// export async function getUser(request: Request) {
+//   const username = await getUsername(request);
+//   if (username === undefined) {
+//     return null;
+//   }
 
-  const user = await getUserByUsername(username);
-  if (user) {
-    return user;
-  }
+//   const user = await getUserByUsername(username);
+//   if (user) {
+//     return user;
+//   }
 
-  throw await logout(request);
-}
+//   throw await logout(request);
+// }
 
 export async function requireUsername(
   request: Request,
@@ -58,16 +56,16 @@ export async function requireUsername(
   return username;
 }
 
-export async function requireUser(request: Request) {
-  const username = await requireUsername(request);
+// export async function requireUser(request: Request) {
+//   const username = await requireUsername(request);
 
-  const user = await getUserByUsername(username);
-  if (user) {
-    return user;
-  }
+//   const user = await getUserByUsername(username);
+//   if (user) {
+//     return user;
+//   }
 
-  throw await logout(request);
-}
+//   throw await logout(request);
+// }
 
 export async function createUserSession({
   request,

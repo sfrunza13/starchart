@@ -37,19 +37,19 @@ export default function Header() {
     >
       <Hide below="lg">
         <HStack color="white" justifyContent="flex-start">
-          <Link to={{ pathname: '/domains' }}>
+          {/* <Link to={{ pathname: '/domains' }}>
             <Flex alignItems="center">
               <TriangleUpIcon marginRight="2" />
               <Text>Domains</Text>
             </Flex>
-          </Link>
+          </Link> */}
 
-          <Link to={{ pathname: '/certificate' }}>
+          {/* <Link to={{ pathname: '/certificate' }}>
             <Flex alignItems="center" marginLeft="5">
               <LockIcon marginRight="2" />
               <Text>Certificate</Text>
             </Flex>
-          </Link>
+          </Link> */}
         </HStack>
       </Hide>
       <Show below="lg">
@@ -62,20 +62,20 @@ export default function Header() {
           />
           <MenuList>
             <MenuItem>
-              <Link to={{ pathname: '/domains' }}>
+              {/* <Link to={{ pathname: '/domains' }}>
                 <Flex alignItems="center">
                   <TriangleUpIcon marginRight="2" />
                   <Text>Domains</Text>
                 </Flex>
-              </Link>
+              </Link> */}
             </MenuItem>
             <MenuItem>
-              <Link to={{ pathname: '/certificate' }}>
+              {/* <Link to={{ pathname: '/certificate' }}>
                 <Flex alignItems="center">
                   <LockIcon marginRight="2" />
                   <Text>Certificate</Text>
                 </Flex>
-              </Link>
+              </Link> */}
             </MenuItem>
           </MenuList>
         </Menu>

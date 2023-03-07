@@ -19,7 +19,7 @@ export default function IndexRoute() {
         Starchart
       </Heading>
       <Text fontSize="xl">Start making your own custom domains and certificates today!</Text>
-      <Text>Welcome {user.username}</Text>
+      <Text>Welcome {user}</Text>
     </div>
   );
 }

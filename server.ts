@@ -8,16 +8,8 @@ import helmet from 'helmet';
 import cors from 'cors';
 
 import logger, { init as loggerInit } from '~/lib/logger.server';
-import { notificationsWorker } from '~/queues/notifications.server';
+
 import { init as samlInit } from '~/lib/saml.server';
-import { init as dnsInit } from '~/lib/dns.server';
-import {
-  orderCreatorWorker,
-  dnsWaiterWorker,
-  challengeCompleterWorker,
-  orderCompleterWorker,
-  dnsCleanerWorker,
-} from '~/queues/certificate/certificate-flow.server';
 
 import type { Request, Response } from 'express';
 
@@ -91,7 +83,7 @@ app.all(
 // happen here.
 async function init() {
   logger.info('app initializing...');
-  return Promise.all([loggerInit(), samlInit(), dnsInit()]);
+  return Promise.all([loggerInit(), samlInit()]);
 }
 
 async function start() {
@@ -111,14 +103,7 @@ async function start() {
     onShutdown: async function (signal) {
       logger.info(`Received ${signal}, starting shutdown...`);
       try {
-        await Promise.all([
-          notificationsWorker.close(),
-          orderCreatorWorker.close(),
-          dnsWaiterWorker.close(),
-          challengeCompleterWorker.close(),
-          orderCompleterWorker.close(),
-          dnsCleanerWorker.close(),
-        ]);
+        await Promise.all([]);
       } catch (err) {
         logger.warn('Error closing database connections', err);
       }

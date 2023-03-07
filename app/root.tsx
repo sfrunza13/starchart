@@ -10,7 +10,7 @@ import {
   useLoaderData,
 } from '@remix-run/react';
 
-import { getUser } from './session.server';
+import { getUsername } from './session.server';
 import theme from './theme';
 
 import type { MetaFunction, LoaderArgs } from '@remix-run/node';
@@ -23,7 +23,7 @@ export const meta: MetaFunction = () => ({
 
 export async function loader({ request, context }: LoaderArgs) {
   return json({
-    user: await getUser(request),
+    user: await getUsername(request),
     nonce: context.nonce as string,
   });
 }

@@ -2,7 +2,7 @@ import type { ActionArgs } from '@remix-run/node';
 import { createUserSession } from '~/session.server';
 import { parseLoginResponse } from '~/lib/saml.server';
 import { redirect } from '@remix-run/node';
-import { createUser, checkUsernameExists } from '~/models/user.server';
+import logger from '~/lib/logger.server';
 
 /* This is the post route that the SAML response is bound to. It comes back as formData.
   We attempt to extract the SAML response into a json format that we can then use:
@@ -56,16 +56,9 @@ export const action = async ({ request }: ActionArgs) => {
   }
   const returnTo = relayState ? relayState : '/';
   const username = samlResponse.attributes.sAMAccountName;
+  logger.info('Saml Response', samlResponse);
 
   // If this user has never logged in before, add to our system
-  if (!(await checkUsernameExists(username))) {
-    await createUser(
-      username,
-      samlResponse.attributes['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'],
-      samlResponse.attributes['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname'],
-      samlResponse.attributes['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress']
-    );
-  }
 
   // Either way create a session
   return createUserSession({
