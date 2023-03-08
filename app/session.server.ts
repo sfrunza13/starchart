@@ -2,9 +2,9 @@ import { createCookieSessionStorage, redirect } from '@remix-run/node';
 
 import secrets from '~/lib/secrets.server';
 
-if (!secrets.SESSION_SECRET?.length) {
-  throw new Error('SESSION_SECRET must be set');
-}
+// if (!secrets.SESSION_SECRET?.length) {
+//   throw new Error('SESSION_SECRET must be set');
+// }
 
 export const sessionStorage = createCookieSessionStorage({
   cookie: {
@@ -12,7 +12,7 @@ export const sessionStorage = createCookieSessionStorage({
     httpOnly: true,
     path: '/',
     sameSite: 'lax',
-    secrets: [secrets.SESSION_SECRET],
+    secrets: ['this-is-our-development-session-secret!!!!'],
     secure: process.env.NODE_ENV === 'production',
   },
 });

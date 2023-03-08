@@ -76,3 +76,11 @@ services:
     volumes:
       - ./config/simplesamlphp-users.php:/var/www/simplesamlphp/config/authsources.php
       - ./config/saml20-idp-hosted.php:/var/www/simplesamlphp/metadata/saml20-idp-hosted.php
+
+  # stars:
+  #   image: stefanaz2/mycustomdomain:first
+  #   container_name: 'stefchart'
+  #   ports:
+  #     - '8080:8080'
+  #   env_file:
+  #     - .env
