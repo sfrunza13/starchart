@@ -4,7 +4,7 @@ const { combine, json, simple, colorize, errors, timestamp } = winston.format;
 
 const logger = winston.createLogger({
   // Default to info level, but use whatever's defined in the env
-  level: process.env.LOG_LEVEL?.toLowerCase() || 'info',
+  level: process.env.LOG_LEVEL?.toLowerCase() || 'debug',
   // In development, use a simplified output, expand errors, use colour.
   // Use JSON with timestamps in production
   format:

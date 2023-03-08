@@ -50,6 +50,17 @@ $config = array(
           'http://schemas.microsoft.com/identity/claims/displayname' => 'Hans Solo',
           
       ),
+      'broken:ithurts' => array(
+        'uid' => array('2'),
+        'eduPersonAffiliation' => array('group2'),
+        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress' => 'broken.heart@myseneca.ca',
+        'email' => 'hansolo@myseneca.ca',
+        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname' => 'broken',
+        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname' => 'heart',
+        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'=> 'broken.heart@myseneca.ca',
+        'http://schemas.microsoft.com/identity/claims/displayname' => 'Broken Heart',
+        
+    ),
     ),
 
 );

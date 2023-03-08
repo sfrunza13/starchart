@@ -52,6 +52,7 @@ export const action = async ({ request }: ActionArgs) => {
   // Try and extract the username and see if there is an existing user by that name
   if (!samlResponse.attributes.sAMAccountName) {
     // TODO: Make this redirect to access denied page
+    logger.info('HIT IT LMFAO');
     return redirect('/');
   }
   const returnTo = relayState ? relayState : '/';
